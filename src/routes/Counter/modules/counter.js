@@ -3,6 +3,7 @@
 // ------------------------------------
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
 export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
+export const LOAD = 'LOAD'
 
 // ------------------------------------
 // Actions
@@ -32,23 +33,30 @@ export const doubleAsync = () => {
   }
 }
 
+export const load = data => ({ type: LOAD, payload: data })
+
 export const actions = {
   increment,
-  doubleAsync
+  doubleAsync,
+  load
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  [COUNTER_INCREMENT]    : (state, action) => ({ counter: state.counter + action.payload }),
+  [COUNTER_DOUBLE_ASYNC] : (state, action) => ({ counter: state.counter * 2 }),
+  [LOAD] : (state, action) => ({ counter: 0, data: action.payload })
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
+const initialState = {
+  counter: 0,
+  data: {}
+}
 export default function counterReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 

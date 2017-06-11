@@ -14,7 +14,11 @@ import Counter from '../components/Counter'
 
 const mapDispatchToProps = {
   increment : () => increment(1),
-  doubleAsync
+  doubleAsync,
+  submit: (values) => {
+    // print the form values to the console
+    console.log(values)
+  }
 }
 
 const mapStateToProps = (state) => ({

@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import './styles/main.scss'
 
+if (process.env.NODE_ENV !== 'production') {
+  const {whyDidYouUpdate} = require('why-did-you-update')
+  whyDidYouUpdate(React)
+}
+
 // Store Initialization
 // ------------------------------------
 const store = createStore(window.__INITIAL_STATE__)

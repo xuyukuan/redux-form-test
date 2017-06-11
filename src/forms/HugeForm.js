@@ -8,26 +8,26 @@ const propTypes = {
 };
 
 const data = {};
-for (let i = 0; i < 300; i++) {
+for (let i = 0; i < 500; i++) {
   data['field'+i] = {};
-  data['field'+i]['firstName'+i] = 'Jane'+i;
-  data['field'+i]['lastName'+i] = 'Doe'+i;
-  data['field'+i]['email'+i] = i + 'joe@gmail.com';
+  data['field'+i]['firstName'] = 'Jane'+i;
+  data['field'+i]['lastName'] = 'Doe'+i;
+  data['field'+i]['email'] = i + 'joe@gmail.com';
 }
 
-const renderCustom = (index) => (field) => (
+const renderCustom = (field) => (
   <div>
     <div>
-      <label htmlFor={`${field.input.name}.firstName${index}`}>First Name</label>
-      <Field name={`${field.input.name}.firstName${index}`} component="input" type="text" />
+      <label htmlFor={`${field.input.name}.firstName`}>First Name</label>
+      <Field name={`${field.input.name}.firstName`} component="input" type="text" />
     </div>
     <div>
-      <label htmlFor={`${field.input.name}.lastName${index}`}>Last Name</label>
-      <Field name={`${field.input.name}.lastName${index}`} component="input" type="text" />
+      <label htmlFor={`${field.input.name}.lastName`}>Last Name</label>
+      <Field name={`${field.input.name}.lastName`} component="input" type="text" />
     </div>
     <div>
-      <label htmlFor={`${field.input.name}.email${index}`}>Email</label>
-      <Field name={`${field.input.name}.email${index}`} component="input" type="email" />
+      <label htmlFor={`${field.input.name}.email`}>Email</label>
+      <Field name={`${field.input.name}.email`} component="input" type="email" />
     </div>
   </div>
 )
@@ -43,9 +43,9 @@ export class HugeForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
         {
-          new Array(300).fill(1).map((it, index) => (
+          new Array(500).fill(1).map((it, index) => (
             <div key={index}>
-              <Field name={`field${index}`} component={renderCustom(index)} />
+              <Field name={`field${index}`} component={renderCustom} />
               <hr/>
             </div>
           ))
